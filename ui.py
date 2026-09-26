@@ -31,14 +31,14 @@ def draw_background():
 
 def draw_idle_screen():
     draw_background()
-    canvas.create_text(400, 180, text="✧ pic me! ✧", font=("Trebuchet MS", 36, "bold"), fill="white", tags="ui")
-    canvas.create_rectangle(300, 260, 500, 310, fill="white", outline="#993556", width=3, tags="ui")
-    canvas.create_text(400, 285, text="☆ tap to start ☆", font=("Trebuchet MS", 16, "bold"), fill="#993556", tags="ui")
+    canvas.create_text(400, 180, text="PHOTOBOOTH", font=("Times New Roman", 36, "bold"), fill="#49ba5e", tags="ui")
+    canvas.create_rectangle(300, 260, 500, 310, fill="#49ba5e", outline="#8e4e38", width=3, tags="ui")
+    canvas.create_text(400, 285, text="TAP TO START", font=("Times New Roman", 16, "bold"), fill="#8e4e38", tags="ui")
     canvas.bind("<Button-1>", lambda event: start_sequence())
 
 def draw_ready_screen():
     draw_background()
-    canvas.create_text(400, 240, text="get ready! ✨", font=("Trebuchet MS", 40, "bold"), fill="white", tags="ui")
+    canvas.create_text(400, 240, text="GET READY!", font=("Times New Roman", 40, "bold"), fill="#49ba5e", tags="ui")
 
 def start_sequence():
     canvas.unbind("<Button-1>")
@@ -69,8 +69,8 @@ def update_live_feed():
 def run_countdown(number):
     if number > 0:
         canvas.delete("countdown_num")
-        canvas.create_text(400, 220, text=str(number), font=("Trebuchet MS", 130, "bold"),
-                            fill="white", tags="countdown_num")
+        canvas.create_text(400, 220, text=str(number), font=("Times New Roman", 130, "bold"),
+                            fill="#49ba5e", tags="countdown_num")
         canvas.tag_raise("countdown_num")
         root.after(1000, lambda: run_countdown(number - 1))
     else:
@@ -91,7 +91,7 @@ def flash_and_capture():
 
 def draw_loading_screen():
     draw_background()
-    canvas.create_text(400, 240, text="loading... 💫", font=("Trebuchet MS", 28, "bold"), fill="white", tags="ui")
+    canvas.create_text(400, 240, text="LOADING….", font=("Times New Roman", 28, "bold"), fill="#49ba5e", tags="ui")
 
 def after_capture(raw_filename):
     global result_photo_ref
@@ -110,26 +110,26 @@ def after_capture(raw_filename):
     orig_resized = orig_img.resize((display_width, display_height))
     result_photo_ref = ImageTk.PhotoImage(orig_resized)
     canvas.create_image(400, 220, image=result_photo_ref, tags="ui")
-    canvas.create_text(400, 440, text="here's your pic! 💕", font=("Trebuchet MS", 16, "bold"), fill="white", tags="ui")
+    canvas.create_text(400, 440, text="HERES YOUR PIC", font=("Times New Roman", 16, "bold"), fill="#49ba5e", tags="ui")
 
     root.after(2000, lambda: start_printing(dithered_filename))
 
 def draw_printing_screen():
     draw_background()
     # Printer body
-    canvas.create_rectangle(340, 170, 460, 230, fill="white", outline="#993556", width=3, tags="ui")
+    canvas.create_rectangle(340, 170, 460, 230, fill="white", outline="#8e4e38", width=3, tags="ui")
     # Paper slot on top
-    canvas.create_rectangle(355, 160, 445, 172, fill="#f4c0d1", outline="#993556", width=2, tags="ui")
+    canvas.create_rectangle(355, 160, 445, 172, fill="#b56441", outline="#8e4e38", width=2, tags="ui")
     # Paper coming out, printed on
-    canvas.create_rectangle(365, 230, 435, 280, fill="white", outline="#993556", width=2, tags="ui")
-    canvas.create_line(375, 240, 425, 240, fill="#993556", width=1, tags="ui")
-    canvas.create_line(375, 250, 425, 250, fill="#993556", width=1, tags="ui")
-    canvas.create_line(375, 260, 405, 260, fill="#993556", width=1, tags="ui")
+    canvas.create_rectangle(365, 230, 435, 280, fill="white", outline="#8e4e38", width=2, tags="ui")
+    canvas.create_line(375, 240, 425, 240, fill="#874d37", width=1, tags="ui")
+    canvas.create_line(375, 250, 425, 250, fill="#874d37", width=1, tags="ui")
+    canvas.create_line(375, 260, 405, 260, fill="#874d37", width=1, tags="ui")
     # Small blinking light on the printer body
-    canvas.create_oval(395, 195, 405, 205, fill="#ff6fa8", outline="#993556", tags="ui")
+    canvas.create_oval(395, 195, 405, 205, fill="#ba6849", outline="#874d37", tags="ui")
 
-    canvas.create_text(400, 320, text="printing your pic!", font=("Trebuchet MS", 16, "bold"), fill="white", tags="ui")
-    canvas.create_text(400, 350, text="hang tight ✨", font=("Trebuchet MS", 13, "bold"), fill="white", tags="ui")
+    canvas.create_text(400, 320, text="PRINTING YOUR PICTURE", font=("Times New Roman", 16, "bold"), fill="#49ba5e", tags="ui")
+    canvas.create_text(400, 350, text="give it a minute", font=("Times New Roman", 13, "bold"), fill="#49ba5e", tags="ui")
 
 
 def start_printing(dithered_filename):
